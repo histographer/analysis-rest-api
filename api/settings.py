@@ -25,7 +25,7 @@ SECRET_KEY = '+*2y*b$rw+0$d7+efy_e0j6mgtbtb@@@$pk(1u%)+92ib&^)x#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'analysis',
+    'ranking',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'analysis_rest_api.urls'
+ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [
     {
