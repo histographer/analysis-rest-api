@@ -1,11 +1,9 @@
 version: '3'
 
 services:
-  web:
+  analysis_service:
     build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:9000"
-    container_name: analysis_service 
     volumes:
       - .:/analysis_service
     ports:
-      - "9000:9000"
+      - "80:9000"
