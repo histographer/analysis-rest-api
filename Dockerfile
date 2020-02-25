@@ -11,4 +11,4 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 
 
-CMD ["gunicorn", "--bind", ":9000", "api.wsgi"]
+CMD ["gunicorn", "--bind", ":80", "api.wsgi"]
