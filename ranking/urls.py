@@ -17,5 +17,6 @@ from django.urls import path
 from ranking import views
 
 urlpatterns = [
-    path('suggestpair/', views.suggest_pair, name='suggest pair'),
+    path('suggestpair/', views.suggest_pair, name='suggest_pair'),
+    path('ranking/', views.ranking, name='compute_ranking'),
 ]
