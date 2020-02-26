@@ -25,7 +25,7 @@ SECRET_KEY = '+*2y*b$rw+0$d7+efy_e0j6mgtbtb@@@$pk(1u%)+92ib&^)x#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'core.digipat.no', 'localhost', 'patornat.digipat.no']
 
 
 # Application definition
