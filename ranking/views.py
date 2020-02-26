@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from .ranking import random_pair
+from histographer.analysis.ranking.high_level import suggest_pair as new_pair
 
 
 @api_view(['POST'])
@@ -11,18 +11,21 @@ from .ranking import random_pair
 #@authentication_classes(...)
 def suggest_pair(request):
     """
-    Suggests a new pair for comparison. Currently returns a random pair.
+    Suggests a new pair for comparison.
     """
-    number_of_items = request.data.get("number_of_items")
+    image_ids = request.data.get("image_ids")
     comparison_data = request.data.get("comparison_data")
-    pairs = []
+    comparisons = []
     for item in comparison_data:
-        if item == 'id':
-            pass
-        chosen = item.get('chosen').get('id')
-        other = item.get('other').get('id')
-        pair = (chosen, other)
-        pairs.append(pair)
-    pair = random_pair(number_of_items)
-    response = {'left': {'id': pair[0]}, 'right': {'id': pair[1]}}
+        winner = item.get('winner').get('id')
+        loser = item.get('loser').get('id')
+        pair = (winner, loser)
+        comparisons.append(pair)
+
+    pair = new_pair(image_ids, comparisons)  # tuple left right
+
+    response = {'pair': pair}
     return Response(response)
+
+
+
