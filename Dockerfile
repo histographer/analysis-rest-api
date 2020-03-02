@@ -1,10 +1,9 @@
-FROM python:3.7
-
+FROM python:3.7.3
 ENV PYTHONUNBUFFERED 1
-WORKDIR /analysis_service
+RUN mkdir /src
+WORKDIR /src
 
-ADD . /analysis_service/
+RUN pip install --upgrade pip
+COPY requirements.txt /src/
 RUN pip install -r requirements.txt
-RUN pip install gunicorn
-
-CMD ["gunicorn", "--bind", ":80", "api.wsgi"]
+COPY . /src/
