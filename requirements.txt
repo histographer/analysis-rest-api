@@ -1,3 +1,6 @@
 Django==3.0.3
 djangorestframework==3.11
-histographer-analysis
+#histographer-analysis
+-e git+https://github.com/histographer/histographer-analysis.git#egg=histographer-analysis
+gunicorn==20.0.4
+
