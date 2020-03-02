@@ -61,4 +61,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: ../cytomine/bootstrap/redeploy.sh analysis-rest-api
+          script: ../cytomine/infrastructure/redeploy.sh analysis-rest-api
