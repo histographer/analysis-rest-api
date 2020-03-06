@@ -10,4 +10,4 @@ COPY . /src/
 
 RUN apt-get update && apt-get install -y curl
 
-CMD  ["gunicorn", "--bind",  "0.0.0.0:8000", "api.wsgi"]
+CMD  ["gunicorn", "--bind",  "0.0.0.0:80", "api.wsgi"]
