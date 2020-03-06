@@ -9,3 +9,5 @@ RUN pip install -r requirements.txt
 COPY . /src/
 
 RUN apt-get update && apt-get install -y curl
+
+CMD  ["gunicorn", "--bind",  "0.0.0.0:8000", "api.wsgi"]
