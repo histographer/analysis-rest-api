@@ -3,8 +3,8 @@ version: '3'
 services:
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 api.wsgi
+    # command: gunicorn --bind 0.0.0.0:8000 api.wsgi
     volumes:
       - .:/src
     ports:
-      - "80:8000"
+      - "80:80"
