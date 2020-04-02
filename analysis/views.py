@@ -16,14 +16,15 @@ def analyze(request):
     Takes in an annotation group and the analyses to be performed on it,
     and starts the analyses.
     """
+    project_id = 168
     with open('secrets.yml', 'r') as f:
         # TODO: Enter correct secrets and set up for different host info for dev and prod
-        host_info = safe_load(f)['host-local']
+        host_info = safe_load(f)['host-digipat']
         print(host_info)
     analysis_id = request.data.get("analysisId")
     annotation_ids = request.data.get("annotations")
     analysis_names = request.data.get("analysis")
-    args = (analysis_id, annotation_ids, analysis_names, host_info)
+    args = (project_id, analysis_id, annotation_ids, analysis_names, host_info)
     # Check that all arguments have been provided and start analysis
     if all(args):
         analysis_thread = threading.Thread(target=do_analysis, args=args)
