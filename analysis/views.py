@@ -20,17 +20,14 @@ def analyze(request):
     with open('secrets.yml', 'r') as f:
         # TODO: Enter correct secrets
         host_info = safe_load(f)['host']
-    try:
-        analysis_id = request.data.get("analysisId")
-        annotation_ids = request.data.get("annotations")
-        analysis_names = request.data.get("analysis")
-        args = (host_info, annotation_ids, analysis_names)
+    analysis_id = request.data.get("analysisId")
+    annotation_ids = request.data.get("annotations")
+    analysis_names = request.data.get("analysis")
+    args = (analysis_id, annotation_ids, analysis_names, host_info)
+    # Check that all arguments have been provided and start analysis
+    if all(args):
         analysis_thread = threading.Thread(target=do_analysis, args=args)
+        analysis_thread.start()
         return Response(status=202)
-    except AttributeError as e:
-        print(e)
-        return Response(data=e, status=400)
-
-
-
-
+    else:
+        return Response(data=request.data, status=400)

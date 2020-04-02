@@ -1,5 +1,5 @@
 from django.urls import path
-from ranking import views
+from analysis import views
 
 urlpatterns = [
     path('analyze/', views.analyze, name='analyze'),
