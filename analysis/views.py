@@ -6,7 +6,6 @@ from rest_framework.response import Response
 import threading
 from yaml import safe_load
 
-
 HE_ANALYSIS, RGB_ANALYSIS = "he", "rgb"
 
 
@@ -18,8 +17,9 @@ def analyze(request):
     and starts the analyses.
     """
     with open('secrets.yml', 'r') as f:
-        # TODO: Enter correct secrets
-        host_info = safe_load(f)['host']
+        # TODO: Enter correct secrets and set up for different host info for dev and prod
+        host_info = safe_load(f)['host-local']
+        print(host_info)
     analysis_id = request.data.get("analysisId")
     annotation_ids = request.data.get("annotations")
     analysis_names = request.data.get("analysis")
