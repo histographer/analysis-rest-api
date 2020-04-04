@@ -14,8 +14,12 @@ def recursive_flatten(d):
 
 
 def dict_list_to_csv_b64(d):
-    csv_string = pd.DataFrame(d).to_csv()
+    csv_string = dict_list_to_csv(d)
     return base64.b64encode(bytes(csv_string, 'utf-8'))
+
+
+def dict_list_to_csv(d):
+    return pd.DataFrame(d).to_csv()
 
 
 if __name__ == '__main__':

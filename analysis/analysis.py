@@ -1,7 +1,7 @@
 from histographer.analysis.image.high_level import image_analysis
 import json
 import requests
-from .encode import dict_list_to_csv_b64
+from .encode import dict_list_to_csv, recursive_flatten
 import os
 import traceback
 
@@ -15,9 +15,9 @@ def do_analysis(project_id, analysis_id, annotation_ids, analysis_names, host_in
     try:
         url = f"{WIZARD_BACKEND_URL}/analysisResults"
         results = image_analysis(host_info, annotation_ids, analysis_names)  # TODO: image_analysis(project_id, ...)
-        csv_b64 = dict_list_to_csv_b64(results).decode()
+        csv = dict_list_to_csv(recursive_flatten(results))
         data = {
-            "csvBase64": csv_b64,
+            "csv": csv,
             "analysisId": analysis_id,
             "annotations": results
         }
