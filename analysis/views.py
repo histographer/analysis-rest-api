@@ -7,7 +7,9 @@ import threading
 from yaml import safe_load
 import os
 
+# Define names and availability here:
 HE_ANALYSIS, RGB_ANALYSIS = "he", "rgb"
+AVAILABLE_ANALYSES = [HE_ANALYSIS]
 
 
 @api_view(['POST'])
@@ -42,3 +44,7 @@ def analyze(request):
     else:
         return Response(data=request.data, status=400)
 
+
+@api_view(['GET'])
+def available_analyses(request):
+    return Response(data={"names": AVAILABLE_ANALYSES})
