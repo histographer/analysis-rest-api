@@ -1,3 +1,9 @@
+# Installation
+- Create a copy of `env.sample` called `.env`
+- Fill the `.env` where appropriate
+
+Run with `docker-compose up -d`. 
+
 # Analysis REST API
 
 The API is divided in to two parts, `ranking` and `analysis`. 
