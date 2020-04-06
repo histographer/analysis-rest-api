@@ -20,10 +20,10 @@ def analyze(request):
     with open('secrets.yml', 'r') as f:
         # TODO: Enter correct secrets and set up for different host info for dev and prod
         host_info = safe_load(f)['host-digipat']
-        print(host_info)
     analysis_id = request.data.get("analysisId")
     annotation_ids = request.data.get("annotations")
     analysis_names = request.data.get("analysis")
+    # project_id = request.data.get("projectId")
     args = (project_id, analysis_id, annotation_ids, analysis_names, host_info)
     # Check that all arguments have been provided and start analysis
     if all(args):
@@ -32,3 +32,4 @@ def analyze(request):
         return Response(status=202)
     else:
         return Response(data=request.data, status=400)
+
