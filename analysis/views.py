@@ -5,6 +5,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 import threading
 from yaml import safe_load
+import os
 
 HE_ANALYSIS, RGB_ANALYSIS = "he", "rgb"
 
@@ -16,9 +17,14 @@ def analyze(request):
     Takes in an annotation group and the analyses to be performed on it,
     and starts the analyses.
     """
-    with open('secrets.yml', 'r') as f:
-        # TODO: Enter correct secrets and set up for different host info for dev and prod
-        host_info = safe_load(f)['host-jepat']
+    # with open('secrets.yml', 'r') as f:
+    #     # TODO: Enter correct secrets and set up for different host info for dev and prod
+    #     host_info = safe_load(f)['host-jepat']
+    host_info = {
+        "host": os.getenv("CYTOMINE_TOP_URL"),
+        "public_key": os.getenv("CYTOMINE_PUBLIC_KEY"),
+        "private_key": os.getenv("CYTOMINE_PRIVATE_KEY")
+    }
     analysis_id = request.data.get("analysisId")
     annotation_ids = request.data.get("annotations")
     analysis_names = request.data.get("analysis")
