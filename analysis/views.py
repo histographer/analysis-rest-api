@@ -18,7 +18,7 @@ def analyze(request):
     """
     with open('secrets.yml', 'r') as f:
         # TODO: Enter correct secrets and set up for different host info for dev and prod
-        host_info = safe_load(f)['host-digipat']
+        host_info = safe_load(f)['host-jepat']
     analysis_id = request.data.get("analysisId")
     annotation_ids = request.data.get("annotations")
     analysis_names = request.data.get("analysis")
