@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  env_file:
-    - '.env'
   web:
+    env_file:
+      - '.env'
     build: .
     # command: gunicorn --bind 0.0.0.0:8000 api.wsgi
     volumes:
