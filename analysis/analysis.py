@@ -9,13 +9,12 @@ def do_analysis(project_id, analysis_id, annotation_ids, analysis_names, host_in
     try:
         url = f"{analysis_results_url}"
         results = image_analysis(host_info, annotation_ids, analysis_names)  # TODO: image_analysis(project_id, ...)
-        csv = dict_list_to_csv(recursive_flatten(results))
+        csv = dict_list_to_csv([recursive_flatten(item) for item in results])
         data = {
             "analysisId": analysis_id,
             "csv": csv,
             "annotations": results
         }
-        print(data)
         response = requests.post(url, data=json.dumps(data))
     except Exception:
         # TODO: More sophisticated error handling/logging?
