@@ -5,16 +5,17 @@ from .encode import dict_list_to_csv, recursive_flatten
 import traceback
 
 
-def do_analysis(project_id, analysis_id, annotation_ids, analysis_names, host_info, analysis_results_url, update_status_url):
+def do_analysis(analysis_id, annotation_ids, analysis_names, host_info, analysis_results_url, update_status_url):
     try:
         url = f"{analysis_results_url}"
-        results = image_analysis(host_info, annotation_ids, analysis_names)  # TODO: image_analysis(project_id, ...)
+        results = image_analysis(host_info, annotation_ids, analysis_names)
         csv = dict_list_to_csv([recursive_flatten(item) for item in results])
         data = {
             "analysisId": analysis_id,
             "csv": csv,
             "annotations": results
         }
+        print(f"Data: {data}")
         response = requests.post(url, data=json.dumps(data))
     except Exception:
         # TODO: More sophisticated error handling/logging?
