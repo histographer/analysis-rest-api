@@ -1,6 +1,6 @@
 Django==3.0.3
 djangorestframework==3.11
-histographer-analysis==0.2.6
+histographer-analysis==0.2.7
 cytomine-python-client==2.2.0
 gunicorn==20.0.4
 requests==2.23.0
