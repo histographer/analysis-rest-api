@@ -9,10 +9,8 @@ def do_analysis(analysis_id, annotation_ids, analysis_names, host_info, analysis
     try:
         url = f"{analysis_results_url}"
         results = image_analysis(host_info, annotation_ids, analysis_names)
-        csv = dict_list_to_csv([recursive_flatten(item) for item in results])
         data = {
             "analysisId": analysis_id,
-            "csv": csv,
             "annotations": results
         }
         print(f"Data: {data}")
