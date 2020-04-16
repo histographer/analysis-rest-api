@@ -1,14 +1,10 @@
-from .analysis import do_analysis
+from .analysis import do_analysis, get_available_analyses
 
 from rest_framework.decorators import parser_classes, api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 import threading
 import os
-
-# Define names and availability here:
-HE_ANALYSIS, RGB_ANALYSIS = "he", "rgb"
-AVAILABLE_ANALYSES = [HE_ANALYSIS]
 
 
 @api_view(['POST'])
@@ -43,4 +39,4 @@ def analyze(request):
 
 @api_view(['GET'])
 def available_analyses(request):
-    return Response(data={"names": AVAILABLE_ANALYSES})
+    return Response(data={"names": get_available_analyses()})

@@ -1,8 +1,10 @@
 from histographer.analysis.image.high_level import image_analysis
+import histographer.analysis.image.analysis as image_analysis_module
 import json
 import requests
-from .encode import dict_list_to_csv, recursive_flatten
+# from .encode import dict_list_to_csv, recursive_flatten
 import traceback
+import inspect
 
 
 def do_analysis(analysis_id, annotation_ids, analysis_names, host_info, analysis_results_url, update_status_url):
@@ -30,3 +32,17 @@ def do_analysis(analysis_id, annotation_ids, analysis_names, host_info, analysis
     #     pass
     # else:
     #     pass
+
+
+def get_available_analyses():
+    """
+    Assumes that the image analysis module of histographer only contains valid image analysis functions,
+    and that internal functions start with underscore.
+
+    :return: List of strings with names of available analyses
+    """
+    available_analyses = []
+    for name, func in inspect.getmembers(image_analysis_module, inspect.isfunction):
+        if func.__module__ == image_analysis_module.__name__ and not name.startswith("_"):
+            available_analyses.append(name)
+    return available_analyses
