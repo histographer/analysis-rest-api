@@ -10,14 +10,12 @@ import numpy as np
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
-# @renderer_classes([JSONRenderer])
-# @authentication_classes(...)
 def suggest_pair(request):
     """
     Suggests a new pair for comparison.
     """
-    image_ids, comparisons = parse_comparisons(request.data)
-    pair = new_pair(image_ids, comparisons)  # tuple left right
+    image_ids, comparisons, skipped = parse_comparisons(request.data)
+    pair = new_pair(image_ids, comparisons, skipped)  # tuple left right
     response = {'pair': pair}
     return Response(response)
 
