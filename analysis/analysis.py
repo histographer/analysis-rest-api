@@ -1,10 +1,9 @@
-from histographer.analysis.image.high_level import image_analysis
 import histographer.analysis.image.analysis as image_analysis_module
+from histographer.analysis.image.high_level import image_analysis
+import inspect
 import json
 import requests
-# from .encode import dict_list_to_csv, recursive_flatten
 import traceback
-import inspect
 
 
 def do_analysis(analysis_id, annotation_ids, analysis_names, host_info, analysis_results_url, update_status_url):
