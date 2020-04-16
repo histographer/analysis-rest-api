@@ -25,7 +25,8 @@ Sample API call:
    "image_ids":[
       48,
       38,
-      99
+      99,
+      6
    ],
    "comparison_data":[
       {
@@ -44,7 +45,10 @@ Sample API call:
             "id":38
          }
       }
-   ]
+   ],
+   "skipped":[
+      [38, 6]
+   ] 
 }
 ```
 
