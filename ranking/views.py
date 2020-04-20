@@ -15,9 +15,12 @@ def suggest_pair(request):
     Suggests a new pair for comparison.
     """
     image_ids, comparisons, skipped = parse_comparisons(request.data)
-    pair = new_pair(image_ids, comparisons, skipped)  # tuple left right
-    response = {'pair': pair}
-    return Response(response)
+    try:
+        pair = new_pair(image_ids, comparisons, skipped)  # tuple left right
+        response = {'pair': pair}
+        return Response(response)
+    except ValueError as e:
+        return Response(data=str(e), status=404)
 
 
 @api_view(['POST'])
@@ -38,6 +41,3 @@ def ranking(request):
         ]
     }
     return Response(response)
-    
-
-

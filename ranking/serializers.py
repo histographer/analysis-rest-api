@@ -14,4 +14,3 @@ def parse_comparisons(request_data):
     for pair in skipped_data:
         skipped.append(tuple(pair))
     return image_ids, comparisons, skipped
-
