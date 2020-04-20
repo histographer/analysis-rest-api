@@ -11,6 +11,7 @@ def parse_comparisons(request_data):
         comparisons.append(pair)
     # Parse "skipped" list of lists to list of tuples:
     skipped = []
-    for pair in skipped_data:
-        skipped.append(tuple(pair))
+    if skipped_data is not None:
+        for pair in skipped_data:
+            skipped.append(tuple(pair))
     return image_ids, comparisons, skipped

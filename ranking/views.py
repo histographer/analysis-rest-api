@@ -27,7 +27,7 @@ def suggest_pair(request):
 @parser_classes([JSONParser])
 def ranking(request):
     """Get the ranked order of """
-    image_ids, comparisons = parse_comparisons(request.data)
+    image_ids, comparisons, skipped = parse_comparisons(request.data)
     scores = compute_elo_scores(image_ids, comparisons)
     ranked = list(np.array(image_ids)[np.argsort(scores)])
     response = {
