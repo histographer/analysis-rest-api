@@ -1,4 +1,4 @@
-Django==3.0.3
+Django==3.0.7
 djangorestframework==3.11
 histographer-analysis==1.0.1
 cytomine-python-client==2.2.0
