@@ -1,5 +1,5 @@
 Django==3.1.9
-djangorestframework==3.11
+djangorestframework==3.11.2
 histographer-analysis==1.0.1
 cytomine-python-client==2.2.0
 gunicorn==20.0.4
